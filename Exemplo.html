@@ -1,0 +1,157 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplos JavaScript</title>
+
+</head>
+
+<body>
+
+    <div id="time-pequeno">Atletico-MG</div>
+    <div id="time-grande">Cruzeiro</div>
+    <div class="urso">RUUUUUU</div>
+    <div class="sherk">AOOOO</div>
+    <div class="urso">Sou o urso</div>
+    <br>
+    <p>Parágrafo 2 de teste</p>
+    <p class="paragrafo">Parágrafo de teste</p>
+
+    <div class="teste">1</div>
+    <div class="teste">2</div>
+    <div class="teste">3</div>
+    <br>
+    <div id="pai">
+        <div class="filho">1</div>
+        <div class="filho">2</div>
+
+    </div>
+
+    <div id="nissan">
+      
+    </div>
+
+    <!--Aula 18-->
+    <div class="js">Angular</div>
+    <div class="js">React</div>
+    <div class="js">Typescript</div>
+
+
+
+    <script>
+        //Exemplos de getElement
+        console.log(
+            // document.getElementById("time-pequeno") //Acessar a Div buscando pelo ID
+            // document.getElementById("time-grande").innerHTML //O ineerHTML serve para acessar texto dentro da Div buscando pelo ID
+            // document.getElementsByClassName("urso")[0].innerHTML //Acessar a classe urso no indice 0
+            // document.getElementsByTagName("br")[0] //Acessar TAGS do html
+
+            // Com o query Selector vc pode acessar tanto a TAG quando o ID ou a Class (Obs: O querySelector so consegue buscar um elemento)
+            // document.querySelector(".urso")  
+            // document.querySelector("#time-pequeno")
+            //  document.querySelector("p.paragrafo").innerHTML
+
+            //querySelectorAll
+            //document.querySelectorAll(".teste")
+            //document.getElementById("pai").querySelectorAll(".filho") // Acessar uma classe dentro de uma DIV ID
+
+            //creatElement, cria um elemto
+            //document.createElement("p")
+
+        )
+
+        //Condição comparando o número de filhos da classe pai
+       /* if(document.getElementById("pai").querySelectorAll(".filho").length == 2)
+            console.log("Ele tem 2 filhos"),
+            console.log("testando IF")
+        
+            else
+                console.log("Ele não tem 2 filhos") */
+
+            //criação de elementos
+           /* var img = document.createElement("img")
+            img.src = "pico.jpg"
+            console.log(img)
+            var p = document.createElement("p")
+            p.innerHTML = "Olá pessoas"
+            p.id = "Idteste"
+            console.log(p)  */
+
+         //Com o apendChild você consegu e inserir um elemento dentro do outro
+         var versa = document.createElement("p")
+         versa.innerHTML = "Versa"
+         document.getElementById("nissan").appendChild(versa)
+
+         var sentra = document.createElement("p")
+         sentra.innerHTML = "Sentra"
+         document.getElementById("nissan").appendChild(sentra)
+        
+        //inserindo imagem na DIV id=nissan
+        var pico = document.createElement("img")
+        pico.src = "pico.jpg"
+        pico.width = "500"
+        document.getElementById("nissan").appendChild(pico)
+        
+        //remover elemento filho
+         document.getElementById('nissan').removeChild(sentra)
+
+         //parentNode mostrar qual é o elemento pai
+         console.log(
+        // document.querySelector(".filho").parentNode.parentNode
+         )
+
+        //Mostra qual é o tipo da variavel "typeof"
+        var numero = 9
+        //console.log(typeof numero)
+
+        //Objetos, como decralar
+        var testeObjeto = {
+            placa: "ASD-555",
+            ano: 2018,
+            modelo: "Sedan",
+            opcionais: {                //pode-se conter um objeto dentro do outro
+                cambio: "Automático",
+                combustivel: "Flex"
+                
+            }
+        }  
+        //console.log(testeObjeto.opcionais.cambio)
+
+        //Exemplo de arrays
+        var testeArray = ["Albertt", 23, {cidade: "Coronel Fabriciano"}, ["Superior Completo", "Sistemas de Informação"]] //pode-se armazenar um Array ou um objeto dentro do Array
+        console.log(testeArray[2].cidade)
+        console.log(testeArray[3][1])
+
+        //Exemplos de loops
+       var js =  document.getElementsByClassName("js")
+       
+       //percorre tanto HTML colection quanto Array
+       for (let i=0; i < js.length; i++){ // Percorre a Classe conforme seu tamanho "length"
+         let texto = js[i].innerHTML //Salva o valor que esta dentro da Class na variavel Text
+         js[i].innerHTML = "Curso " + texto + " Js" //Concatena a as outras informações junto com a variavel "Text"
+
+       }
+       
+       //Uso do forEach
+       var testeForEach = [1,2,3,4] //definindo array para teste 
+
+       testeForEach.forEach(     //variavel array que quer percorrer . forEach
+           function(element, index){ // No primeiro parametro "Element" conseguimos acessar os valores do array, enquanto no segundo parametro "Index" acessamos os indices do array
+               console.log(element, index)
+               if(element == 4){
+                   testeForEach[index]= "Estava aqui um 4" //definindo um novo valor se o Elemento for 4 no index que ele estiver
+               }
+       })
+ 
+       console.log(testeForEach)
+
+   
+
+  
+       
+
+    </script>
+
+</body>
+
+</html>

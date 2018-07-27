@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <title>Aula 23 - Javascript</title>
+    </head>
+
+    <style>
+    .erro {
+        border: 2px solid red;
+    }
+    
+    </style>
+
+<body>
+       <select id="linguagens">
+           <option value="1" >PHP</option>
+           <option value="2">C#</option>
+           <option value="3">Javascript</option>
+           <option value="4">Java</option>
+
+       </select> <br>
+
+       <input type="text" id="nome" > <br>
+       <input type="text" id="sobrenome"> <br> <br>
+
+       <!--Exemplo de Keyup -->
+       <input type="text" id="search">
+       <div id="result">Nenhum resultado</div>
+
+       <!--Exemplo de Keypress -->
+       <input type="text" id="keypress">
+       <div id="final" style="display: none">É o enter</div>
+
+       <!--Exemplo de Submit -->
+       <form action="#" method="POST">
+        <input type="text" name="name" >
+        <input type="text" name="email">
+        <button type="submit">Enter</button>
+       </form>
+
+
+    
+
+    <script>
+
+    //Evento change
+
+    var linguagens = document.getElementById("linguagens")
+
+    linguagens.addEventListener("change", function(){
+        console.log(this.value) //pega o value do campo select que você selecionou
+        var options = this.options // "this.options" retorna array de opções do select
+        var itemAtual = this.selectedIndex //"this.selectedIndex" seleciona qual index foi selecionado pelo usuário
+        console.log(options[itemAtual].text) //"itemAtual" é o indice selecionado pelo usuário enquando o "opitions" é o array que contem todas as opçoes do indice, o ".text" mostra o que esta escrito dentro do elemento
+    })
+
+
+    //Evento blur (Quando vc sai de um elemento ele executa)
+
+    var nome = document.getElementById("nome")
+    var sobrenome = document.getElementById("sobrenome")
+
+    nome.addEventListener("mouseover", function(){
+        nome.placeholder ="Digite seu nome"
+    })
+
+    nome.addEventListener("blur", function(){
+    //salva o valor digitado no "input nome" no "input sobrenome"
+    sobrenome.value = this.value //usa-se ".value" por que se trata de um input
+    
+    //Após sair do nome adiciona o "placeholder" no sobrenome
+    sobrenome.placeholder = "Digite seu sobrenome"; 
+       
+    })
+
+
+    //Evento Keyup (apos soltar a tecla do teclado ele é disparado)
+    var texto = document.getElementById("search")
+    var resultado = document.getElementById("result")
+    var resultadoDefaut = "Nenhum resultado"
+
+    texto.addEventListener("keyup", function(){
+        if(this.value != ""){
+            resultado.innerHTML = this.value //pega o que está sendo digidado no input e escreve na div "result"
+        }
+        else{
+            resultado.innerHTML = resultadoDefaut
+        } 
+    })
+
+    //Evento keypress
+    var keypress = document.getElementById("keypress")
+    var final = document.getElementById("final")
+
+    keypress.addEventListener("keypress", function(evento){
+       // console.log(evento.keyCode) //mostra na console o código da tecla do teclado
+        if (evento.keyCode == 13)
+        final.style.display = "block" //Se a tecla pressionada tiver o codigo 13 (Enter) o display do style recebe "block"
+
+    })
+
+
+    //Evento Submit
+    var form = document.querySelector("form")
+    form.addEventListener("submit", function(evento){
+        evento.preventDefault(); //não atualiza a pagina se os dados estão como padrões
+        console.log(this.elements) //"this.elements" exibe todos os elementos do form, os mostra dentro de um array
+        for(var i = 0; i< this.elements.length; i++){
+
+            if(this.elements[i].type != "submit"){ //verifica o tipo do elemento, se for um botão não adiciona a borda
+
+            if (this.elements[i].value == ""){ //verifica se o valor do elemento é vazio, se for vazio add a classe "erro" (a classe adiciona borda vermelha no item)
+                this.elements[i].classList.add("erro");
+            }
+            else{
+                this.elements[i].classList.remove("erro");
+            }
+            }
+        }
+
+    })
+
+   
+
+    </script>
+</body>
+
+</html>

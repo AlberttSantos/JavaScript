@@ -1,0 +1,123 @@
+<html>
+<head>
+    <title>Aula 19 - Funções</title>
+</head>
+
+<body>
+    <h4>Meu Botão</h4>
+    <button id="btn">Click</button>
+
+    <style>
+ 
+    .cordolink{
+        color: red
+    }
+
+    .cordatabela{
+        background-color: blue;
+    }
+    </style>
+
+    <a href="#" id="link">
+        <h1>Link de teste</h1>
+    </a>
+
+    <table style="width: 100%">
+        <thead>
+            <th align="left">Nome</th>
+            <th align="left">Idade</th>
+        </thead>
+        <tbody>
+            <tr class="tr">
+                <td style="height: 30px;">Alien</td>
+                <td style="height: 30px;">2000</td>
+            </tr>
+            <tr class="tr">
+                <td style="height: 30px;">Bixo papão</td>
+                <td style="height: 30px;">1000</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+<script>
+
+    //Funções inicial de teste para calculo de media
+    function calcMedia(nota1, nota2, nota3){
+           return (nota1+nota2+nota3)/3;
+       }
+
+    //Objeto
+    var pessoa = {
+    nome: "Albertt",
+    idade: 23,
+    profissao: "programador",
+    cidade: "MG"
+    }
+
+    //Primeira forma é passar as variaveis por parametro
+    function novapessoa (nome, idade, profissao, cidade){
+        pessoa.nome = nome;
+        pessoa.idade = idade;
+        pessoa.profissao = profissao;
+        pessoa.cidade = cidade;
+
+    }
+
+    //Segunda forma é passar um objeto por parametro
+    function novapessoa2 (objetoPessoa){
+        pessoa = objetoPessoa;
+        return pessoa.nome
+    }
+
+    //pode passar quantos parametros desejar e acessalos com o arguments
+    function parametrosDinamicos(){
+        console.log(arguments[2]) //Arguments mostra os argumentos da função e os salva em um array Obs: Pode se acessar a casa do array atraves do arguments
+    }
+
+    //Evento onload - Verifica se a pagina foi carregada
+    window.onload = function () {
+        //alert("Pagina carregada com sucesso")
+    }
+
+    //Acessar botão
+    var botao = document.getElementById("btn");
+    
+    //"addEventListener" Serve para adicinar um evento 
+    botao.addEventListener("click", function(){ //No primeiro parametro colocamos qual o tipo/nome de evento, e no segundo parametro colocamos o que vai acontecer, ou seja, qual a resposta do evento
+        alert("Você clicou no botão")
+    })       
+    //Sintexe do addEventListener Ex: elemento.adicionarevendo("nome do evento", funcao que executa apos o evento)
+
+    //mouseover (Exemplo utilizando a tabela e o link criado acima)
+    
+    var link = document.getElementById("link") //pegar o elemento link
+    var tr = document.getElementsByClassName("tr") //pegar todas as classes
+    
+    link.addEventListener("mouseover", function(){
+        link.classList.add("cordolink") //adiciona a classe "cordolink" criada no css ao elemento "Link"
+    })
+
+    link.addEventListener("mouseleave", function(){
+        link.classList.remove("cordolink") //remove a classe "cordolink" criada no css ao elemento "Link"
+    })
+
+    //percorrer classes 
+    for (var i=0; i<tr.length; i++){
+        tr[i].addEventListener("mouseover", function(){ // Serve para adicionar um evento em um elemento
+            console.log(this) // O "this" retorna o elemento em que se esta passando o mouse por cima
+            this.classList.add("cordatabela") //adiciona a classe "cordatabela" no elemento tr
+        })
+    }
+
+    for (var i=0; i<tr.length; i++){
+        tr[i].addEventListener("mouseleave", function(){ 
+            this.classList.remove("cordatabela")   //remove a classe "cordatabela" do elemento tr
+        })
+    }
+
+
+</script>
+</body>
+</html>
